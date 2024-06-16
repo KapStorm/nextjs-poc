@@ -87,3 +87,27 @@ export async function modeloCreate ({ nombre, marcaId }: z.infer<typeof schemas.
 
   revalidatePath('/modelos')
 }
+
+export async function modeloEdit (id: string, { nombre, marcaId }: z.infer<typeof schemas.modelos.edit>) {
+  await prisma.modelo.update({
+    where: {
+      id
+    },
+    data: {
+      nombre,
+      marcaId
+    }
+  })
+
+  revalidatePath('/modelos')
+}
+
+export async function modeloDelete (id: string) {
+  await prisma.modelo.delete({
+    where: {
+      id
+    }
+  })
+
+  revalidatePath('/modelos')
+}

@@ -19,6 +19,14 @@ const schemas = {
         message: 'El nombre debe tener al menos 2 caracteres'
       }),
       marcaId: z.string().uuid()
+    }),
+    edit: z.object({
+      nombre: z.string().min(2, {
+        message: 'El nombre debe tener al menos 2 caracteres'
+      }),
+      marcaId: z.string().uuid({
+        message: 'Seleccione una marca'
+      })
     })
   },
   articulos: {
