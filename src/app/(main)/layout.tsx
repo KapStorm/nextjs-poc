@@ -11,7 +11,7 @@ export default function MainLayout ({ children }: Props) {
       <header>
         <Navbar />
       </header>
-      <main className='container'>
+      <main className='container mt-4'>
         {children}
       </main>
     </>

@@ -1,7 +1,12 @@
+import MarcasCreateDialog from '@/components/marcas/marcas-create-dialog'
+import MarcasTable from '@/components/marcas/marcas-table'
 import React from 'react'
 
 export default function MarcasPage () {
   return (
-    <h1>Marcas</h1>
+    <div>
+      <MarcasTable />
+      <MarcasCreateDialog />
+    </div>
   )
 }
