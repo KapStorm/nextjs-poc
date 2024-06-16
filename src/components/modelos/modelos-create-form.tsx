@@ -8,8 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { modeloCreate } from '@/lib/actions'
 import schemas from '@/lib/schemas'
+import actions from '@/lib/actions'
 
 type Props = {
   marcas: Marca[]
@@ -27,7 +27,7 @@ export default function ModelosCreatForm ({ marcas }: Props) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(async (data) => {
-        await modeloCreate(data)
+        await actions.modelos.create(data)
         form.reset()
       })} className='space-y-4'>
         <FormField

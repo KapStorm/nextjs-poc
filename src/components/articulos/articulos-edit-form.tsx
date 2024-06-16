@@ -8,8 +8,8 @@ import { Articulo, Modelo } from '@prisma/client'
 import { Input } from '../ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Button } from '../ui/button'
-import { articuloEdit } from '@/lib/actions'
 import schemas from '@/lib/schemas'
+import actions from '@/lib/actions'
 
 type Props = {
   articulo: Articulo
@@ -31,7 +31,7 @@ export default function ArticulosEditForm ({ articulo, modelos, onComplete }: Pr
   return (
     <Form {...form}>
       <form className='space-y-4' onSubmit={form.handleSubmit(async (data) => {
-        await articuloEdit(articulo.id, data)
+        await actions.articulos.edit(articulo.id, data)
         onComplete()
       })}>
         <FormField

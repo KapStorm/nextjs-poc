@@ -1,66 +1,72 @@
 'use server'
 
 import { z } from 'zod'
-import { articulosCreateFormSchema, marcasCreateFormSchema, modelosCreateFormSchema } from './schemas'
 import prisma from './db'
 import { revalidatePath } from 'next/cache'
+import schemas from './schemas'
 
-export async function marcasCreate ({ nombre }: z.infer<typeof marcasCreateFormSchema>) {
-  await prisma.marca.create({
-    data: {
-      nombre
+const actions = {
+  marcas: {
+    create: async ({ nombre }: z.infer<typeof schemas.marcas.create>) => {
+      await prisma.marca.create({
+        data: {
+          nombre
+        }
+      })
+
+      revalidatePath('/marcas')
     }
-  })
+  },
+  modelos: {
+    create: async ({ nombre, marcaId }: z.infer<typeof schemas.modelos.create>) => {
+      await prisma.modelo.create({
+        data: {
+          nombre,
+          marcaId
+        }
+      })
 
-  revalidatePath('/marcas')
-}
-
-export async function modeloCreate ({ nombre, marcaId }: z.infer<typeof modelosCreateFormSchema>) {
-  await prisma.modelo.create({
-    data: {
-      nombre,
-      marcaId
+      revalidatePath('/modelos')
     }
-  })
+  },
+  articulos: {
+    create: async ({ nombre, modeloId, stock, precio }: z.infer<typeof schemas.articulos.create>) => {
+      await prisma.articulo.create({
+        data: {
+          nombre,
+          modeloId,
+          stock,
+          precio
+        }
+      })
 
-  revalidatePath('/modelos')
-}
-
-export async function articuloCreate ({ nombre, modeloId, stock, precio }: z.infer<typeof articulosCreateFormSchema>) {
-  await prisma.articulo.create({
-    data: {
-      nombre,
-      modeloId,
-      stock,
-      precio
-    }
-  })
-
-  revalidatePath('/articulos')
-}
-
-export async function articuloDelete (id: string) {
-  await prisma.articulo.delete({
-    where: {
-      id
-    }
-  })
-
-  revalidatePath('/articulos')
-}
-
-export async function articuloEdit (id: string, { nombre, modeloId, stock, precio }: z.infer<typeof articulosCreateFormSchema>) {
-  await prisma.articulo.update({
-    where: {
-      id
+      revalidatePath('/articulos')
     },
-    data: {
-      nombre,
-      modeloId,
-      stock,
-      precio
-    }
-  })
+    edit: async (id: string, { nombre, modeloId, stock, precio }: z.infer<typeof schemas.articulos.edit>) => {
+      await prisma.articulo.update({
+        where: {
+          id
+        },
+        data: {
+          nombre,
+          modeloId,
+          stock,
+          precio
+        }
+      })
 
-  revalidatePath('/articulos')
+      revalidatePath('/articulos')
+    },
+    delete: async (id: string) => {
+      await prisma.articulo.delete({
+        where: {
+          id
+        }
+      })
+
+      revalidatePath('/articulos')
+    }
+  }
 }
+
+export default actions

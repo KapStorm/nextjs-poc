@@ -8,8 +8,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { articuloCreate } from '@/lib/actions'
 import schemas from '@/lib/schemas'
+import actions from '@/lib/actions'
 
 type Props = {
   modelos: Modelo[]
@@ -30,7 +30,7 @@ export default function ArticulosCreateForm ({ modelos, onComplete }: Props) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(async (data) => {
-        await articuloCreate(data)
+        await actions.articulos.create(data)
         form.reset()
         onComplete()
       })} className='space-y-4'>
