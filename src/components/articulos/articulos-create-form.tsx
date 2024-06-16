@@ -13,9 +13,10 @@ import { articuloCreate } from '@/lib/actions'
 
 type Props = {
   modelos: Modelo[]
+  onComplete: () => void
 }
 
-export default function ArticulosCreateForm ({ modelos }: Props) {
+export default function ArticulosCreateForm ({ modelos, onComplete }: Props) {
   const form = useForm<z.infer<typeof articulosCreateFormSchema>>({
     resolver: zodResolver(articulosCreateFormSchema),
     defaultValues: {
@@ -31,6 +32,7 @@ export default function ArticulosCreateForm ({ modelos }: Props) {
       <form onSubmit={form.handleSubmit(async (data) => {
         await articuloCreate(data)
         form.reset()
+        onComplete()
       })} className='space-y-4'>
         <FormField
           name='nombre'

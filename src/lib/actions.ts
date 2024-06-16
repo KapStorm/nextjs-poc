@@ -38,3 +38,13 @@ export async function articuloCreate ({ nombre, modeloId, stock, precio }: z.inf
 
   revalidatePath('/articulos')
 }
+
+export async function articuloDelete (id: string) {
+  await prisma.articulo.delete({
+    where: {
+      id
+    }
+  })
+
+  revalidatePath('/articulos')
+}

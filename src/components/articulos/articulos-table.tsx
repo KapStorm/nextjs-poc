@@ -1,18 +1,11 @@
 import prisma from '@/lib/db'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table'
+import ArticulosTableActions from './articulos-table-actions'
 
 export default async function ArticulosTable () {
   const articulos = await prisma.articulo.findMany({
-    select: {
-      id: true,
-      nombre: true,
-      precio: true,
-      stock: true,
-      modelo: {
-        select: {
-          nombre: true
-        }
-      }
+    include: {
+      modelo: true
     }
   })
 
@@ -25,18 +18,21 @@ export default async function ArticulosTable () {
           <TableHead>Precio</TableHead>
           <TableHead>Stock</TableHead>
           <TableHead>Modelo</TableHead>
+          <TableHead>Acciones</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {articulos.length > 0
-          ? articulos.map(({ id, nombre, precio, stock, modelo: { nombre: modeloNombre } }) => (
-              <TableRow key={id}>
-                <TableCell>{id}</TableCell>
-                <TableCell>{nombre}</TableCell>
-                <TableCell>{precio}</TableCell>
-                <TableCell>{stock}</TableCell>
-                <TableCell>{modeloNombre}</TableCell>
-                <TableCell>Acciones</TableCell>
+          ? articulos.map((articulo) => (
+              <TableRow key={articulo.id}>
+                <TableCell>{articulo.id}</TableCell>
+                <TableCell>{articulo.nombre}</TableCell>
+                <TableCell>{articulo.precio}</TableCell>
+                <TableCell>{articulo.stock}</TableCell>
+                <TableCell>{articulo.modelo.nombre}</TableCell>
+                <TableCell>
+                  <ArticulosTableActions articulo={articulo} editComponent={null} />
+                </TableCell>
               </TableRow>
           ))
           : (
