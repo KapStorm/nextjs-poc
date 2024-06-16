@@ -4,35 +4,37 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Button } from '../ui/button'
 import { Dialog, DialogContent, DialogFooter, DialogTitle, DialogTrigger } from '../ui/dialog'
 import React, { useState } from 'react'
-import { Articulo } from '@prisma/client'
+import { Articulo, Modelo } from '@prisma/client'
 import { articuloDelete } from '@/lib/actions'
+import ArticulosEditForm from './articulos-edit-form'
 
 type Props = {
   articulo: Articulo
-  editComponent: React.ReactNode
+  modelos: Modelo[]
 }
 
-export default function ArticulosTableActions ({ articulo, editComponent }: Props) {
-  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false)
+export default function ArticulosTableActions ({ articulo, modelos }: Props) {
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <DropdownMenu open={isDropdownMenuOpen} onOpenChange={setIsDropdownMenuOpen}>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <Button>Acciones</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-        <Dialog onOpenChange={setIsDropdownMenuOpen}>
+        <Dialog onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
               Editar
             </DropdownMenuItem>
           </DialogTrigger>
           <DialogContent>
-            {editComponent}
+            <DialogTitle>Editar articulo</DialogTitle>
+            <ArticulosEditForm articulo={articulo} modelos={modelos} onComplete={() => setIsOpen(false)} />
           </DialogContent>
         </Dialog>
-        <Dialog onOpenChange={setIsDropdownMenuOpen}>
+        <Dialog onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
               Eliminar
@@ -46,7 +48,7 @@ export default function ArticulosTableActions ({ articulo, editComponent }: Prop
                 className='w-full'
                 onClick={async () => {
                   await articuloDelete(articulo.id)
-                  setIsDropdownMenuOpen(false)
+                  setIsOpen(false)
                 }}>Eliminar</Button>
             </DialogFooter>
           </DialogContent>

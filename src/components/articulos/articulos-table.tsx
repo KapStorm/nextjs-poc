@@ -8,6 +8,7 @@ export default async function ArticulosTable () {
       modelo: true
     }
   })
+  const modelos = await prisma.modelo.findMany()
 
   return (
     <Table>
@@ -31,7 +32,7 @@ export default async function ArticulosTable () {
                 <TableCell>{articulo.stock}</TableCell>
                 <TableCell>{articulo.modelo.nombre}</TableCell>
                 <TableCell>
-                  <ArticulosTableActions articulo={articulo} editComponent={null} />
+                  <ArticulosTableActions articulo={articulo} modelos={modelos} />
                 </TableCell>
               </TableRow>
           ))
