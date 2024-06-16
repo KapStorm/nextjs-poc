@@ -1,12 +1,13 @@
+import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 export default function Home () {
   return (
     <main className='flex items-center h-full'>
       <div className='flex mx-auto gap-6'>
-        <Link href="/articulos">Articulos</Link>
-        <Link href="/modelos">Modelos</Link>
-        <Link href="/marcas">Marcas</Link>
+        <Button><Link href="/articulos">Articulos</Link></Button>
+        <Button><Link href="/modelos">Modelos</Link></Button>
+        <Button><Link href="/marcas">Marcas</Link></Button>
       </div>
     </main>
   )
