@@ -6,8 +6,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import actions, from '@/lib/actions'
 import schemas from '@/lib/schemas'
+import { marcaCreate } from '@/lib/actions'
 
 export default function MarcasCreateForm () {
   const form = useForm<z.infer<typeof schemas.marcas.create>>({
@@ -19,7 +19,7 @@ export default function MarcasCreateForm () {
 
   return (
     <Form {...form}>
-      <form className='space-y-4' onSubmit={form.handleSubmit((data) => actions.marcas.create(data))}>
+      <form className='space-y-4' onSubmit={form.handleSubmit((data) => marcaCreate(data))}>
         <FormField
           name='nombre'
           control={form.control}

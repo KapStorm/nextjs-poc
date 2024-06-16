@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import schemas from '@/lib/schemas'
-import actions from '@/lib/actions'
+import { modeloCreate } from '@/lib/actions'
 
 type Props = {
   marcas: Marca[]
@@ -27,7 +27,7 @@ export default function ModelosCreatForm ({ marcas }: Props) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(async (data) => {
-        await actions.modelos.create(data)
+        await modeloCreate(data)
         form.reset()
       })} className='space-y-4'>
         <FormField
