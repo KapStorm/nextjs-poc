@@ -5,8 +5,8 @@ import React from 'react'
 export default function MarcasPage () {
   return (
     <div>
-      <MarcasTable />
       <MarcasCreateDialog />
+      <MarcasTable />
     </div>
   )
 }

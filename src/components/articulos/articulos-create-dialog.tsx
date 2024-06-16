@@ -16,7 +16,7 @@ export default function ArticulosCreateDialog ({ modelos }: Props) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button>Crear articulo</Button>
+        <Button disabled={modelos.length === 0}>Agregar</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogTitle>Crear articulo</DialogTitle>

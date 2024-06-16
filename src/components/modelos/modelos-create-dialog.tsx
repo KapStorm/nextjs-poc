@@ -9,7 +9,7 @@ export default async function ModelosCreateDialog () {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button disabled={marcas.length === 0}>Create Modelo</Button>
+        <Button disabled={marcas.length === 0}>Agregar</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogTitle>Create Modelo</DialogTitle>

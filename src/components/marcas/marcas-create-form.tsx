@@ -9,7 +9,11 @@ import { Button } from '../ui/button'
 import schemas from '@/lib/schemas'
 import { marcaCreate } from '@/lib/actions'
 
-export default function MarcasCreateForm () {
+type Props = {
+  onCompleted: () => void
+}
+
+export default function MarcasCreateForm ({ onCompleted }: Props) {
   const form = useForm<z.infer<typeof schemas.marcas.create>>({
     resolver: zodResolver(schemas.marcas.create),
     defaultValues: {
@@ -19,7 +23,13 @@ export default function MarcasCreateForm () {
 
   return (
     <Form {...form}>
-      <form className='space-y-4' onSubmit={form.handleSubmit((data) => marcaCreate(data))}>
+      <form
+        className='space-y-4'
+        onSubmit={form.handleSubmit(async (data) => {
+          await marcaCreate(data)
+          onCompleted()
+        })}
+      >
         <FormField
           name='nombre'
           control={form.control}
