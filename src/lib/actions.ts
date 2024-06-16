@@ -1,7 +1,7 @@
 'use server'
 
 import { z } from 'zod'
-import { marcasCreateFormSchema, modelosCreateFormSchema } from './schemas'
+import { articulosCreateFormSchema, marcasCreateFormSchema, modelosCreateFormSchema } from './schemas'
 import prisma from './db'
 import { revalidatePath } from 'next/cache'
 
@@ -24,4 +24,17 @@ export async function modeloCreate ({ nombre, marcaId }: z.infer<typeof modelosC
   })
 
   revalidatePath('/modelos')
+}
+
+export async function articuloCreate ({ nombre, modeloId, stock, precio }: z.infer<typeof articulosCreateFormSchema>) {
+  await prisma.articulo.create({
+    data: {
+      nombre,
+      modeloId,
+      stock,
+      precio
+    }
+  })
+
+  revalidatePath('/articulos')
 }
