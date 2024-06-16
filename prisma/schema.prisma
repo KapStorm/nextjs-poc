@@ -12,3 +12,33 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Marca {
+  id      String   @id @default(uuid())
+  nombre  String
+  modelos Modelo[]
+
+  @@map("marcas")
+}
+
+model Modelo {
+  id        String     @id @default(uuid())
+  nombre    String
+  marcaId   String     @map("marca_id")
+  marca     Marca      @relation(fields: [marcaId], references: [id])
+  articulos Articulo[]
+
+  @@map("modelos")
+}
+
+model Articulo {
+  id        String   @id @default(uuid())
+  nombre    String
+  modeloId  String   @map("modelo_id")
+  modelo    Modelo   @relation(fields: [modeloId], references: [id])
+  precio    Float
+  stock     Int
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("articulos")
+}
