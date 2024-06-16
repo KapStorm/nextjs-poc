@@ -1,0 +1,26 @@
+{
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "always"
+        }
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "always"
+        }
+    },
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "always"
+        }
+    },
+}
