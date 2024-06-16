@@ -54,6 +54,29 @@ export async function marcaCreate ({ nombre }: z.infer<typeof schemas.marcas.cre
   revalidatePath('/marcas')
 }
 
+export async function marcaEdit (id: string, { nombre }: z.infer<typeof schemas.marcas.edit>) {
+  await prisma.marca.update({
+    where: {
+      id
+    },
+    data: {
+      nombre
+    }
+  })
+
+  revalidatePath('/marcas')
+}
+
+export async function marcaDelete (id: string) {
+  await prisma.marca.delete({
+    where: {
+      id
+    }
+  })
+
+  revalidatePath('/marcas')
+}
+
 export async function modeloCreate ({ nombre, marcaId }: z.infer<typeof schemas.modelos.create>) {
   await prisma.modelo.create({
     data: {
