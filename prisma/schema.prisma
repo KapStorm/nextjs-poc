@@ -25,7 +25,7 @@ model Modelo {
   id        String     @id @default(uuid())
   nombre    String
   marcaId   String     @map("marca_id")
-  marca     Marca      @relation(fields: [marcaId], references: [id])
+  marca     Marca      @relation(fields: [marcaId], references: [id], onDelete: Cascade)
   articulos Articulo[]
 
   @@map("modelos")
@@ -35,7 +35,7 @@ model Articulo {
   id        String   @id @default(uuid())
   nombre    String
   modeloId  String   @map("modelo_id")
-  modelo    Modelo   @relation(fields: [modeloId], references: [id])
+  modelo    Modelo   @relation(fields: [modeloId], references: [id], onDelete: Cascade)
   precio    Float
   stock     Int
   createdAt DateTime @default(now()) @map("created_at")
