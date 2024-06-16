@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Button } from '../ui/button'
+import { Button } from './button'
 import { usePathname } from 'next/navigation'
 
 const links = [

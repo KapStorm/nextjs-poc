@@ -1,7 +1,10 @@
+import ArticulosTable from '@/components/articulos/articulos-table'
 import React from 'react'
 
 export default function ArticulosPage () {
   return (
-    <h1>Articulos</h1>
+    <div>
+      <ArticulosTable />
+    </div>
   )
 }

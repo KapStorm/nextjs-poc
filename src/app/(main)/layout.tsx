@@ -1,4 +1,4 @@
-import Navbar from '@/components/misc/navbar'
+import Navbar from '@/components/ui/navbar'
 import React from 'react'
 
 type Props = {
