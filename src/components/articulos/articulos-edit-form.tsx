@@ -3,13 +3,13 @@
 import { useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { z } from 'zod'
-import { articulosEditFormSchema } from '@/lib/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Articulo, Modelo } from '@prisma/client'
 import { Input } from '../ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Button } from '../ui/button'
 import { articuloEdit } from '@/lib/actions'
+import schemas from '@/lib/schemas'
 
 type Props = {
   articulo: Articulo
@@ -18,8 +18,8 @@ type Props = {
 }
 
 export default function ArticulosEditForm ({ articulo, modelos, onComplete }: Props) {
-  const form = useForm<z.infer<typeof articulosEditFormSchema>>({
-    resolver: zodResolver(articulosEditFormSchema),
+  const form = useForm<z.infer<typeof schemas.articulos.edit>>({
+    resolver: zodResolver(schemas.articulos.edit),
     defaultValues: {
       nombre: articulo.nombre,
       modeloId: articulo.modeloId,

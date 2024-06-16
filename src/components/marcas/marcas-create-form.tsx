@@ -7,11 +7,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { marcasCreate } from '@/lib/actions'
-import { marcasCreateFormSchema } from '@/lib/schemas'
+import schemas from '@/lib/schemas'
 
 export default function MarcasCreateForm () {
-  const form = useForm<z.infer<typeof marcasCreateFormSchema>>({
-    resolver: zodResolver(marcasCreateFormSchema),
+  const form = useForm<z.infer<typeof schemas.marcas.create>>({
+    resolver: zodResolver(schemas.marcas.create),
     defaultValues: {
       nombre: ''
     }

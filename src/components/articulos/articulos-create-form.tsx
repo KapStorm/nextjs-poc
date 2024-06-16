@@ -5,11 +5,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Modelo } from '@prisma/client'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { z } from 'zod'
-import { articulosCreateFormSchema } from '@/lib/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { articuloCreate } from '@/lib/actions'
+import schemas from '@/lib/schemas'
 
 type Props = {
   modelos: Modelo[]
@@ -17,8 +17,8 @@ type Props = {
 }
 
 export default function ArticulosCreateForm ({ modelos, onComplete }: Props) {
-  const form = useForm<z.infer<typeof articulosCreateFormSchema>>({
-    resolver: zodResolver(articulosCreateFormSchema),
+  const form = useForm<z.infer<typeof schemas.articulos.create>>({
+    resolver: zodResolver(schemas.articulos.create),
     defaultValues: {
       nombre: '',
       modeloId: '',

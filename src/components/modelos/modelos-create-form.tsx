@@ -4,20 +4,20 @@ import { useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { type Marca } from '@prisma/client'
 import { z } from 'zod'
-import { modelosCreateFormSchema } from '@/lib/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { modeloCreate } from '@/lib/actions'
+import schemas from '@/lib/schemas'
 
 type Props = {
   marcas: Marca[]
 }
 
 export default function ModelosCreatForm ({ marcas }: Props) {
-  const form = useForm<z.infer<typeof modelosCreateFormSchema>>({
-    resolver: zodResolver(modelosCreateFormSchema),
+  const form = useForm<z.infer<typeof schemas.modelos.create>>({
+    resolver: zodResolver(schemas.modelos.create),
     defaultValues: {
       nombre: '',
       marcaId: ''
