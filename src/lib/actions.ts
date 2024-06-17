@@ -53,6 +53,7 @@ export async function marcaCreate ({ nombre }: z.infer<typeof schemas.marcas.cre
 
   revalidatePath('/marcas')
   revalidatePath('/modelos')
+  revalidatePath('/articulos')
 }
 
 export async function marcaEdit (id: string, { nombre }: z.infer<typeof schemas.marcas.edit>) {
@@ -67,6 +68,7 @@ export async function marcaEdit (id: string, { nombre }: z.infer<typeof schemas.
 
   revalidatePath('/marcas')
   revalidatePath('/modelos')
+  revalidatePath('/articulos')
 }
 
 export async function marcaDelete (id: string) {
@@ -78,6 +80,7 @@ export async function marcaDelete (id: string) {
 
   revalidatePath('/marcas')
   revalidatePath('/modelos')
+  revalidatePath('/articulos')
 }
 
 export async function modeloCreate ({ nombre, marcaId }: z.infer<typeof schemas.modelos.create>) {
