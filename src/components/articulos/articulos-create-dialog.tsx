@@ -3,7 +3,7 @@
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../ui/dialog'
 import { Button } from '../ui/button'
 import ArticulosCreateForm from './articulos-create-form'
-import { type Modelo } from '@prisma/client'
+import { Modelo } from '@prisma/client'
 import { useState } from 'react'
 
 type Props = {
