@@ -15,7 +15,7 @@ export async function articuloCreate ({ nombre, modeloId, stock, precio }: z.inf
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/articulos')
 }
 
 export async function articuloEdit (id: string, { nombre, modeloId, stock, precio }: z.infer<typeof schemas.articulos.edit>) {
@@ -31,7 +31,7 @@ export async function articuloEdit (id: string, { nombre, modeloId, stock, preci
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/articulos')
 }
 
 export async function articuloDelete (id: string) {
@@ -41,7 +41,7 @@ export async function articuloDelete (id: string) {
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/articulos')
 }
 
 export async function marcaCreate ({ nombre }: z.infer<typeof schemas.marcas.create>) {
@@ -51,7 +51,7 @@ export async function marcaCreate ({ nombre }: z.infer<typeof schemas.marcas.cre
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/marcas')
 }
 
 export async function marcaEdit (id: string, { nombre }: z.infer<typeof schemas.marcas.edit>) {
@@ -64,7 +64,7 @@ export async function marcaEdit (id: string, { nombre }: z.infer<typeof schemas.
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/marcas')
 }
 
 export async function marcaDelete (id: string) {
@@ -74,7 +74,7 @@ export async function marcaDelete (id: string) {
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/marcas')
 }
 
 export async function modeloCreate ({ nombre, marcaId }: z.infer<typeof schemas.modelos.create>) {
@@ -85,7 +85,7 @@ export async function modeloCreate ({ nombre, marcaId }: z.infer<typeof schemas.
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/modelos')
 }
 
 export async function modeloEdit (id: string, { nombre, marcaId }: z.infer<typeof schemas.modelos.edit>) {
@@ -99,7 +99,7 @@ export async function modeloEdit (id: string, { nombre, marcaId }: z.infer<typeo
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/modelos')
 }
 
 export async function modeloDelete (id: string) {
@@ -109,5 +109,5 @@ export async function modeloDelete (id: string) {
     }
   })
 
-  revalidatePath('/')
+  revalidatePath('/modelos')
 }
